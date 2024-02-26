@@ -1,0 +1,29 @@
+[project]
+name = "cv2_web_streamer"
+description = "Easy low-latency CV2 streaming using WebRTC and MediaMTX"
+version = "0.0.1"
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy",
+  "lastversion",
+  "aenum",
+]
+authors = [
+  {name = "Dominic C", email = "dominicchm.gh@gmail.com"},
+]
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage = "https://github.com/DominicChm/cv2-web-streamer"
+Issues = "https://github.com/DominicChm/cv2-web-streamer/issues"
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools", "wheel"]
+
