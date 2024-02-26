@@ -12,7 +12,6 @@ dependencies = [
   "numpy",
   "lastversion",
   "aenum",
-  "opencv-python-headless"
 ]
 authors = [
   {name = "Dominic C", email = "dominicchm.gh@gmail.com"},
