@@ -48,3 +48,6 @@ ffmpeg = AssetInstaller(
 def ensure_assets_installed():
     mediamtx.ensure_install()
     ffmpeg.ensure_install()
+
+if __name__ == "__main__":
+    ensure_assets_installed()

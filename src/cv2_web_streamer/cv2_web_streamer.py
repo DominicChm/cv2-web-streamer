@@ -7,7 +7,7 @@ from ._assets import ensure_assets_installed, mediamtx
 from .cv2_web_stream import CV2WebStream
 
 class CV2WebStreamer:
-    def __init__(self, logger=None):
+    def __init__(self, logger=None, port=8889, host="localhost"):
         self.initialized = False
         self.logger = logger
 
@@ -18,6 +18,7 @@ class CV2WebStreamer:
         """Generates a YAML config describing all currently active streams"""
         with open(self.PATH_CONFIG, "w") as cfg:
             entries = [
+                "webrtcAdditionalHosts: [0.0.0.0]\n"
                 "paths:\n",
                 *[f"    {stream.stream_name}:\n" for stream in self.streams],
             ]
