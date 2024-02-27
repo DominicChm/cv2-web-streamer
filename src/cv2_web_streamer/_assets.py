@@ -5,7 +5,7 @@ from ._asset_installer import AssetInstaller
 
 class MTXArchMappings(MultiValueEnum):
     amd64 = "amd64", "x86_64", "AMD64"
-    arm64 = "arm64"
+    arm64 = "arm64", "aarch64"
     arm64v8 = "arm64v8"
     armv6 = "armv6"
     armv7 = "armv7"
@@ -19,7 +19,7 @@ class MTXSystemMappings(MultiValueEnum):
 
 class FFMpegArchMappings(MultiValueEnum):
     amd64 = "64", "amd64", "x86_64", "AMD64"
-    arm64 = "arm-64", "arm64", "arm64v8"
+    arm64 = "arm-64", "arm64", "arm64v8", "aarch64"
 
 
 class FFMpegSystemMappings(MultiValueEnum):
