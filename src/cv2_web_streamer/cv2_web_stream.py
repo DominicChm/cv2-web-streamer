@@ -48,8 +48,8 @@ class CV2WebStream:
                 "-f", "rtsp",
                 f"rtsp://localhost:8554/{self.stream_name}",
             ],
-            stdout=subprocess.STDOUT if self.inherit_stdout else subprocess.DEVNULL,
-            stderr=subprocess.STDOUT if self.inherit_stdout else subprocess.DEVNULL,
+            stdout=None if self.inherit_stdout else subprocess.DEVNULL,
+            stderr=None if self.inherit_stdout else subprocess.DEVNULL,
             stdin=subprocess.PIPE,
         )
 

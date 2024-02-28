@@ -38,8 +38,8 @@ class CV2WebStreamer:
 
         self.process = Popen(
             [mediamtx.executable(), self.PATH_CONFIG],
-            stdout=subprocess.STDOUT if self.inherit_stdout else subprocess.DEVNULL,
-            stderr=subprocess.STDOUT if self.inherit_stdout else subprocess.DEVNULL,
+            stdout=None if self.inherit_stdout else subprocess.DEVNULL,
+            stderr=None if self.inherit_stdout else subprocess.DEVNULL,
             stdin=subprocess.PIPE,
         )
         

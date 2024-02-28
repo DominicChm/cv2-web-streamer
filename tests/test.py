@@ -4,7 +4,7 @@ import cv2
 vid = cv2.VideoCapture(0) 
 
 # Create a CV2 streamer
-streamer = CV2WebStreamer()
+streamer = CV2WebStreamer(inherit_stdout=True)
 
 # Create a stream (analagous to a cv2 imshow window) at <ip-address>:<port>/camera 
 camera_stream = streamer.get_stream("camera")
