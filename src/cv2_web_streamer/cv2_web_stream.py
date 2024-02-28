@@ -3,13 +3,14 @@ import subprocess
 from ._assets import ffmpeg
 
 class CV2WebStream:
-    def __init__(self, mediamtx, stream_name, inherit_stdout=False, size=None, framerate=None):
+    def __init__(self, mediamtx, stream_name, inherit_stdout=False, size=None, framerate=None, host="127.0.0.1"):
         self.size = size
         self.framerate = framerate
         self.stream_name = stream_name
         self.mediamtx = mediamtx
         self.initialized = False
         self.inherit_stdout = inherit_stdout
+        self.host = host
 
     def start(self, frame=None):
         if self.initialized:
@@ -46,7 +47,7 @@ class CV2WebStream:
                 "-g", "60",
                 "-bf", "0",
                 "-f", "rtsp",
-                f"rtsp://localhost:8554/{self.stream_name}",
+                f"rtsp://{self.host}:8554/{self.stream_name}",
             ],
             stdout=None if self.inherit_stdout else subprocess.DEVNULL,
             stderr=None if self.inherit_stdout else subprocess.DEVNULL,
