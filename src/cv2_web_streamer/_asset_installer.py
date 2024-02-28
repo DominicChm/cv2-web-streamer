@@ -164,9 +164,9 @@ class AssetInstaller:
                 "Expected {self.PATH_BINARY.as_posix()} to exist"
             )
             
-        # Update permissions on downloaded file to allow execution
+        # Update permissions on downloaded file to allow execution if linux
         if self._get_system(System) == System.linux:
-            os.fchmod(self.PATH_BINARY, 777)
+            os.chmod(self.PATH_BINARY, 0o777)
             
 
     def ensure_install(self, force_update=False):
