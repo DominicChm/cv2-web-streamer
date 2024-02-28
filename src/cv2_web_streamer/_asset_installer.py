@@ -136,13 +136,14 @@ class AssetInstaller:
         self._process_download(download_path)
 
     def _process_download(self, download_path):
-        if download_path.suffix == ".tar.gz":
+        suffix = download_path.suffix
+        if suffix == ".gz":
             self._log("Untarring download")
             import tarfile
 
             tarfile.open(download_path).extractall(self.PATH_INSTALL_DIR)
 
-        elif download_path.suffix == ".zip":
+        elif suffix== ".zip":
             self._log("Unzipping download")
             import zipfile
 
@@ -151,7 +152,7 @@ class AssetInstaller:
 
         else:
             # Todo: Case: executable download?
-            raise Exception(f"Could not unzip/handle download {download_path}")
+            raise Exception(f"Could not handle extension {suffix} of download {download_path}")
 
         # Make sure expected binary exists after install
         if not self.is_installed():
