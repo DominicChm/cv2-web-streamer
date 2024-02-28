@@ -1,5 +1,6 @@
 # https://github.com/dvershinin/lastversion
 
+import os
 import platform
 import shutil
 
@@ -143,7 +144,7 @@ class AssetInstaller:
 
             tarfile.open(download_path).extractall(self.PATH_INSTALL_DIR)
 
-        elif suffix== ".zip":
+        elif suffix == ".zip":
             self._log("Unzipping download")
             import zipfile
 
@@ -152,13 +153,21 @@ class AssetInstaller:
 
         else:
             # Todo: Case: executable download?
-            raise Exception(f"Could not handle extension {suffix} of download {download_path}")
+            raise Exception(
+                f"Could not handle extension {suffix} of download {download_path}"
+            )
 
         # Make sure expected binary exists after install
         if not self.is_installed():
             raise Exception(
-                f"Could not find binary after processing download! Expected {self.PATH_BINARY.as_posix()} to exist"
+                f"Could not find binary after processing download! "
+                "Expected {self.PATH_BINARY.as_posix()} to exist"
             )
+            
+        # Update permissions on downloaded file to allow execution
+        if self._get_system(System) == System.linux:
+            os.fchmod(self.PATH_BINARY, 777)
+            
 
     def ensure_install(self, force_update=False):
         if not self.is_installed() or force_update:
