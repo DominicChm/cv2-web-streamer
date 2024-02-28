@@ -7,9 +7,12 @@ from ._assets import ensure_assets_installed, mediamtx
 from .cv2_web_stream import CV2WebStream
 
 class CV2WebStreamer:
-    def __init__(self, logger=None, port=8889, host="localhost"):
+    def __init__(self, logger=None, inherit_stdout=False, port=8889, host="localhost"):
+        self.inherit_stdout = inherit_stdout
         self.initialized = False
         self.logger = logger
+        self.host = host
+        self.webrtc_port = port
 
         self.PATH_CONFIG = mediamtx.PATH_INSTALL_DIR / "mediamtx.yml"
         self.streams = []
@@ -35,8 +38,8 @@ class CV2WebStreamer:
 
         self.process = Popen(
             [mediamtx.executable(), self.PATH_CONFIG],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
+            stdout=subprocess.STDOUT if self.inherit_stdout else subprocess.DEVNULL,
+            stderr=subprocess.STDOUT if self.inherit_stdout else subprocess.DEVNULL,
             stdin=subprocess.PIPE,
         )
         
@@ -53,7 +56,7 @@ class CV2WebStreamer:
     def get_stream(self, stream_name, size=None, framerate=None):
         self.start()
 
-        stream = CV2WebStream(self, stream_name, size, framerate)
+        stream = CV2WebStream(self, stream_name, self.inherit_stdout, size, framerate)
         self.streams.append(stream)
         self._generate_config()
         return stream

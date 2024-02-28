@@ -1,7 +1,7 @@
 [project]
 name = "cv2_web_streamer"
 description = "Easy low-latency CV2 streaming using WebRTC and MediaMTX"
-version = "0.0.3"
+version = "0.0.4"
 
 classifiers = [
   "Programming Language :: Python :: 3",
